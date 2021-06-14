@@ -1,20 +1,16 @@
 import * as React from 'react'
-import { BorderRadiusObject, Offset, Shape } from '../types'
+import { SharedProps } from '../types'
 import { ConnectedStep } from './ConnectedStep'
 import { TourGuideContext } from './TourGuideContext'
 
-interface Props {
+export interface StepProps extends SharedProps {
   name: string
   order: number
-  text: string
-  shape?: Shape
   active?: boolean
-  maskOffset?: number | Offset
-  borderRadius?: number
+}
+
+interface Props extends StepProps, SharedProps {
   children: React.ReactNode
-  keepTooltipPosition?: boolean
-  tooltipBottomOffset?: number
-  borderRadiusObject?: BorderRadiusObject
 }
 
 export const Step = (props: Props) => {

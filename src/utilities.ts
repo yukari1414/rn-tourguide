@@ -4,6 +4,7 @@ import clamp from 'lodash.clamp'
 import memoize from 'memoize-one'
 import {
   BorderRadiusObject,
+  IProgress,
   IStep,
   Offset,
   Shape,
@@ -26,6 +27,36 @@ export const getLastStep = (steps: Steps): IStep | null =>
     (a: IStep | null, b) => (!a || a.order < b.order ? b : a),
     null,
   )
+
+export const getProgress = (steps: Steps, step?: IStep): IProgress => {
+  let progress: IProgress = {
+    relative: {
+      current: undefined,
+      total: undefined,
+    },
+    absolute: {
+      current: undefined,
+      total: undefined,
+    }
+  }
+
+  if (steps) {
+    const orderedSteps = Object.values(steps).sort((a, b) => a.order - b.order)
+
+    progress = {
+      relative: {
+        current: step?.order ? orderedSteps.findIndex((x) => x.order === step?.order) + 1 : undefined,
+        total: orderedSteps.length,
+      },
+      absolute: {
+        current: step?.order,
+        total: getLastStep(steps)?.order,
+      }
+    }
+  }
+
+  return progress;
+}
 
 export const getStepNumber = (steps: Steps, step?: IStep): number | undefined =>
   step &&

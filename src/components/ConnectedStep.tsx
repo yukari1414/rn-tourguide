@@ -1,22 +1,13 @@
 import * as React from 'react'
-import { BorderRadiusObject, Offset, Shape } from '../types'
+import { StepProps } from './Step';
+import { SharedProps } from '../types'
 import { ITourGuideContext } from './TourGuideContext'
 
 declare var __TEST__: boolean
 
-interface Props {
-  name: string
-  text: string
-  order: number
-  active?: boolean
-  shape?: Shape
+interface Props extends StepProps, SharedProps {
   context: ITourGuideContext
   children?: any
-  maskOffset?: number | Offset
-  borderRadiusObject?: BorderRadiusObject
-  borderRadius?: number
-  keepTooltipPosition?: boolean
-  tooltipBottomOffset?: number
 }
 
 export class ConnectedStep extends React.Component<Props> {

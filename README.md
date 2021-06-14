@@ -174,20 +174,35 @@ const AppContent = () => {
 `TourGuide` props:
 
 ```ts
-interface TourGuideZoneProps {
-  zone: number // A positive number indicating the order of the step in the entire walkthrough.
-  isTourGuide?: boolean // return children without wrapping id false
-  text?: string // text in tooltip
+export type Shape = 'circle' | 'rectangle' | 'circle_and_keep' | 'rectangle_and_keep'
+
+export interface MaskConfig {
   shape?: Shape // which shape
   maskOffset?: number | Offset // offset around zone for each direction
-  borderRadius?: number // round corner when rectangle
-  startAtMount?: boolean //  start at mount
-  keepTooltipPosition?: boolean
-  tooltipBottomOffset?: number
-  children: React.ReactNode
 }
 
-type Shape = 'circle' | 'rectangle' | 'circle_and_keep' | 'rectangle_and_keep'
+export interface TooltipConfig {
+  borderRadius?: number // round corner when rectangle
+  borderRadiusObject?: BorderRadiusObject
+  keepTooltipPosition?: boolean
+  tooltipBottomOffset?: number
+}
+
+export interface TooltipContent {
+  image?: React.ReactNode
+  title?: string | React.ReactElement
+  subtitle?: string | React.ReactElement
+  text: string | React.ReactElement // text in tooltip
+}
+
+export type SharedProps = MaskConfig & TooltipContent & TooltipConfig;
+
+export interface TourGuideZoneProps extends Partial<SharedProps> {
+  zone: number // A positive number indicating the order of the step in the entire walkthrough.
+  isTourGuide?: boolean // return children without wrapping id false
+  style?: StyleProp<ViewStyle>
+  children?: React.ReactNode
+}
 
 export interface TourGuideProviderProps {
   tooltipComponent?: React.ComponentType<TooltipProps>
@@ -209,6 +224,7 @@ interface TooltipProps {
   isLastStep?: boolean
   currentStep: Step
   labels?: Labels
+  progress: IProgress
   handleNext?(): void
   handlePrev?(): void
   handleStop?(): void
@@ -219,6 +235,16 @@ interface Labels {
   previous?: string
   next?: string
   finish?: string
+}
+
+export interface Progress {
+  current: number | undefined;
+  total: number | undefined;
+}
+
+export interface IProgress {
+  relative: Progress; // progress relative to the actual number of steps
+  absolute: Progress; // progress following the steps numbering (including non-continuous numbering)
 }
 ```
 
@@ -255,6 +281,8 @@ const TooltipComponent = ({
   handlePrev,
   handleStop,
   currentStep,
+  progress,
+  labels,
 }) => (
   // ...
 );
