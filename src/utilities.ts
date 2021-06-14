@@ -155,7 +155,7 @@ export const circleSvgPath = ({
 }
 
 const sanitizeOffsets = (maskOffset?: number | Offset): Offset => {
-  let offsets: Offset = {
+  const offsets: Offset = {
     top: 0,
     bottom: 0,
     left: 0,

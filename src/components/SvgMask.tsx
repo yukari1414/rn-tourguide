@@ -24,10 +24,10 @@ interface Props {
   animationDuration?: number
   backdropColor: string
   dismissOnPress?: boolean
-  stop?(): void
   maskOffset?: number | Offset
   borderRadius?: number
   currentStep?: IStep
+  stop?(): void
   easing?(value: number): number
 }
 

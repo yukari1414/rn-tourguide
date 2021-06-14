@@ -39,7 +39,7 @@ export const TourGuideZoneByPosition = ({
     return null
   }
 
-  let zoneStyle = {};
+  const zoneStyle = {};
   Object.assign(zoneStyle, style)
 
   return (
