@@ -17,7 +17,7 @@
     "lint": "tslint --project .",
     "verify": "yarn test && yarn lint && yarn tsc && yarn build",
     "prepublishOnly": "yarn verify && yarn config:npm",
-    "prepare": "yarn prepublishOnly",
+    "prepare": "yarn config:npm && yarn build",
     "postpublish": "yarn config:dev",
     "cleaning": "rm -rf node_modules && rm -f yarn.lock && yarn cache clean && yarn install && watchman watch-del-all && rm -fr $TMPDIR/react-*",
     "deploy": "gh-pages -d web-build",
