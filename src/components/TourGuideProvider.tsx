@@ -123,6 +123,8 @@ export const TourGuideProvider = ({
 
   const isLastStep = useMemo(() => currentStep === getLastStep(), [currentStep])
 
+  const progress = useMemo(() => utils.getProgress(steps!, currentStep), [steps, currentStep])
+
   const next = () => setCurrentStep(getNextStep()!)
 
   const prev = () => setCurrentStep(getPrevStep()!)
@@ -198,6 +200,7 @@ export const TourGuideProvider = ({
             isFirstStep,
             isLastStep,
             currentStep,
+            progress,
             labels,
             tooltipComponent,
             tooltipStyle,

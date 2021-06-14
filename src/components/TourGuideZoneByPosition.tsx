@@ -1,44 +1,46 @@
 import * as React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
-import { BorderRadiusObject, Shape } from '../types'
-import { TourGuideZone } from './TourGuideZone'
+import { TourGuideZone, TourGuideZoneProps } from './TourGuideZone'
 
-export interface TourGuideZoneByPositionProps {
-  zone: number
-  isTourGuide?: boolean
+export interface TourGuideZoneByPositionProps extends TourGuideZoneProps {
   top?: number | string
   left?: number | string
   right?: number | string
   bottom?: number | string
   width?: number | string
   height?: number | string
-  shape?: Shape
-  borderRadiusObject?: BorderRadiusObject
   containerStyle?: StyleProp<ViewStyle>
-  keepTooltipPosition?: boolean
-  tooltipBottomOffset?: number
-  text?: string
 }
 
 export const TourGuideZoneByPosition = ({
   isTourGuide,
   zone,
+  shape,
+  image,
+  title,
+  subtitle,
+  text,
+  style,
+  maskOffset,
+  borderRadius,
+  keepTooltipPosition,
+  tooltipBottomOffset,
+  borderRadiusObject,
+
   width,
   height,
   top,
   left,
   right,
   bottom,
-  shape,
   containerStyle,
-  keepTooltipPosition,
-  tooltipBottomOffset,
-  borderRadiusObject,
-  text,
 }: TourGuideZoneByPositionProps) => {
   if (!isTourGuide) {
     return null
   }
+
+  let zoneStyle = {};
+  Object.assign(zoneStyle, style)
 
   return (
     <View
@@ -50,12 +52,18 @@ export const TourGuideZoneByPosition = ({
         {...{
           zone,
           shape,
+          maskOffset,
+          borderRadius,
           keepTooltipPosition,
           tooltipBottomOffset,
           borderRadiusObject,
+          image,
+          title,
+          subtitle,
           text,
         }}
         style={{
+          ...zoneStyle,
           position: 'absolute',
           height,
           width,

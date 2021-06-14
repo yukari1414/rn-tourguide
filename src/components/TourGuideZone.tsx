@@ -1,28 +1,26 @@
 import * as React from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
-import { BorderRadiusObject, Offset, Shape } from '../types'
+import { SharedProps } from '../types'
 import { Step } from './Step'
 import { Wrapper } from './Wrapper'
 
-export interface TourGuideZoneProps {
+export interface TourGuideZoneProps extends Partial<SharedProps> {
   zone: number
+  name?: string;
   isTourGuide?: boolean
-  text?: string
-  shape?: Shape
-  maskOffset?: number | Offset
-  borderRadius?: number
-  children?: React.ReactNode
   style?: StyleProp<ViewStyle>
-  keepTooltipPosition?: boolean
-  tooltipBottomOffset?: number
-  borderRadiusObject?: BorderRadiusObject
+  children?: React.ReactNode
 }
 
 export const TourGuideZone = ({
   isTourGuide = true,
   zone,
+  name,
   children,
   shape,
+  image,
+  title,
+  subtitle,
   text,
   maskOffset,
   borderRadius,
@@ -39,8 +37,11 @@ export const TourGuideZone = ({
     <Step
       text={text ?? `Zone ${zone}`}
       order={zone}
-      name={`${zone}`}
+      name={`${name || zone}`}
       {...{
+        image,
+        title,
+        subtitle,
         shape,
         maskOffset,
         borderRadius,

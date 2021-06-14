@@ -10,7 +10,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
-import { BorderRadiusObject, IStep, Labels, Offset, ValueXY } from '../types'
+import { BorderRadiusObject, IProgress, IStep, Labels, Offset, ValueXY } from '../types'
 import styles, { MARGIN } from './style'
 import { SvgMask } from './SvgMask'
 import { Tooltip, TooltipProps } from './Tooltip'
@@ -20,6 +20,7 @@ declare var __TEST__: boolean
 export interface ModalProps {
   ref: any
   currentStep?: IStep
+  progress: IProgress
   visible?: boolean
   isFirstStep: boolean
   isLastStep: boolean
@@ -299,6 +300,7 @@ export class Modal extends React.Component<ModalProps, State> {
           isFirstStep={this.props.isFirstStep}
           isLastStep={this.props.isLastStep}
           currentStep={this.props.currentStep!}
+          progress={this.props.progress}
           handleNext={this.handleNext}
           handlePrev={this.handlePrev}
           handleStop={this.handleStop}

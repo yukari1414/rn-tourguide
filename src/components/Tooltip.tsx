@@ -3,13 +3,14 @@ import { View, Text, TouchableOpacity } from 'react-native'
 
 import { Button } from './Button'
 import styles from './style'
-import { IStep, Labels } from '../types'
+import { IProgress, IStep, Labels } from '../types'
 
 export interface TooltipProps {
   isFirstStep?: boolean
   isLastStep?: boolean
   currentStep: IStep
   labels?: Labels
+  progress: IProgress
   handleNext?(): void
   handlePrev?(): void
   handleStop?(): void

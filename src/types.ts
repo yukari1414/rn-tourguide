@@ -4,6 +4,13 @@ export type Shape =
   | 'circle_and_keep'
   | 'rectangle_and_keep'
 
+export interface BorderRadiusObject {
+  topLeft?: number
+  topRight?: number
+  bottomRight?: number
+  bottomLeft?: number
+}
+
 export interface Offset {
   top?: number
   bottom?: number
@@ -11,19 +18,33 @@ export interface Offset {
   right?: number
 };
 
-export interface IStep {
+export interface MaskConfig {
+  shape?: Shape
+  maskOffset?: number | Offset
+}
+
+export interface TooltipConfig {
+  borderRadius?: number
+  borderRadiusObject?: BorderRadiusObject
+  keepTooltipPosition?: boolean
+  tooltipBottomOffset?: number
+}
+
+export interface TooltipContent {
+  image?: React.ReactNode
+  title?: string | React.ReactElement
+  subtitle?: string | React.ReactElement
+  text: string | React.ReactElement
+}
+
+export type SharedProps = MaskConfig & TooltipContent & TooltipConfig;
+
+export interface IStep extends SharedProps {
   name: string
   order: number
   visible?: boolean
   target: any
-  text: string
   wrapper: any
-  shape?: Shape
-  maskOffset?: number | Offset
-  borderRadius?: number
-  keepTooltipPosition?: boolean
-  tooltipBottomOffset?: number
-  borderRadiusObject?: BorderRadiusObject
 }
 export interface StepObject {
   [key: string]: IStep
@@ -33,13 +54,6 @@ export type Steps = StepObject | IStep[]
 export interface ValueXY {
   x: number
   y: number
-}
-
-export interface BorderRadiusObject {
-  topLeft?: number
-  topRight?: number
-  bottomRight?: number
-  bottomLeft?: number
 }
 
 export type SvgPath = string
@@ -69,4 +83,14 @@ export interface Labels {
   previous?: string
   next?: string
   finish?: string
+}
+
+export interface Progress {
+  current: number | undefined;
+  total: number | undefined;
+}
+
+export interface IProgress {
+  relative: Progress;
+  absolute: Progress;
 }
