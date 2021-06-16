@@ -30,7 +30,7 @@ export interface TourGuideProviderProps {
   borderRadius?: number
   animationDuration?: number
   children: React.ReactNode
-  dismissOnPress: boolean
+  dismissOnPress?: boolean
 }
 
 export const TourGuideProvider = ({
@@ -156,9 +156,9 @@ export const TourGuideProvider = ({
 
   const getCurrentStep = () => currentStep
 
-  const start = async (fromStep?: number) => {
+  const start = async (fromStep?: number | string) => {
     const currentStep = fromStep
-      ? (steps as StepObject)[fromStep]
+      ? (steps as StepObject)[fromStep.toString()]
       : getFirstStep()
 
     if (startTries.current > MAX_START_TRIES) {

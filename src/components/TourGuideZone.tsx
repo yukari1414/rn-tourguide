@@ -6,7 +6,7 @@ import { Wrapper } from './Wrapper'
 
 export interface TourGuideZoneProps extends Partial<SharedProps> {
   zone: number
-  name?: string;
+  name?: string
   isTourGuide?: boolean
   style?: StyleProp<ViewStyle>
   children?: React.ReactNode

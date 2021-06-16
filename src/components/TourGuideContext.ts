@@ -14,7 +14,7 @@ export interface ITourGuideContext {
   registerStep?(step: IStep): void
   unregisterStep?(stepName: string): void
   getCurrentStep?(): IStep | undefined
-  start?(fromStep?: number): void
+  start?(fromStep?: number | string): void
   stop?(): void
 }
 export const TourGuideContext = React.createContext<ITourGuideContext>({
