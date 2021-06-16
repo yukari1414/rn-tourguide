@@ -27,6 +27,7 @@ export interface TooltipConfig {
   borderRadius?: number
   borderRadiusObject?: BorderRadiusObject
   keepTooltipPosition?: boolean
+  tooltipTopOffset?: number
   tooltipBottomOffset?: number
 }
 

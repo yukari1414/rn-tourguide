@@ -185,6 +185,7 @@ export interface TooltipConfig {
   borderRadius?: number // round corner when rectangle
   borderRadiusObject?: BorderRadiusObject
   keepTooltipPosition?: boolean
+  tooltipTopOffset?: number
   tooltipBottomOffset?: number
 }
 
