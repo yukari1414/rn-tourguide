@@ -26,6 +26,7 @@ export const TourGuideZone = ({
   borderRadius,
   style,
   keepTooltipPosition,
+  tooltipTopOffset,
   tooltipBottomOffset,
   borderRadiusObject,
 }: TourGuideZoneProps) => {
@@ -46,6 +47,7 @@ export const TourGuideZone = ({
         maskOffset,
         borderRadius,
         keepTooltipPosition,
+        tooltipTopOffset,
         tooltipBottomOffset,
         borderRadiusObject,
       }}
