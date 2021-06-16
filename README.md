@@ -199,7 +199,9 @@ export interface TooltipContent {
 export type SharedProps = MaskConfig & TooltipContent & TooltipConfig;
 
 export interface TourGuideZoneProps extends Partial<SharedProps> {
+
   zone: number // A positive number indicating the order of the step in the entire walkthrough.
+  name?: string // Use this only if you know what you're doing
   isTourGuide?: boolean // return children without wrapping id false
   style?: StyleProp<ViewStyle>
   children?: React.ReactNode
@@ -217,7 +219,7 @@ export interface TourGuideProviderProps {
   borderRadius?: number
   animationDuration?: number
   children: React.ReactNode
-  dismissOnPress: boolean
+  dismissOnPress?: boolean
 }
 
 interface TooltipProps {
@@ -251,6 +253,9 @@ export interface IProgress {
 
 In order to start the tutorial, you can call the `start` function from `useTourGuideController` hook:
 
+_The `start` function also allows you to specify which step to start from using the `zone` number_
+_NOTE that if you've set a `name` for your `TourGuideZone`, you will need to specify the step using the value set for the `name` property instead_
+
 ```js
 function HomeScreen() {
   const { start } = useTourGuideController()
@@ -258,7 +263,6 @@ function HomeScreen() {
   React.useEffect(() => {
     start()
   }, [])
-
 
   render() {
     // ...
