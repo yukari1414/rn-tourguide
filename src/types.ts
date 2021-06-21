@@ -31,11 +31,19 @@ export interface TooltipConfig {
   tooltipBottomOffset?: number
 }
 
+export interface Labels {
+  skip?: string
+  previous?: string
+  next?: string
+  finish?: string
+}
+
 export interface TooltipContent {
   image?: React.ReactNode
   title?: string | React.ReactElement
   subtitle?: string | React.ReactElement
   text: string | React.ReactElement
+  labels?: Labels
 }
 
 export type SharedProps = MaskConfig & TooltipContent & TooltipConfig;
@@ -78,13 +86,6 @@ export interface SVGMaskPathMorphParam {
 export type SVGMaskPathMorph = (
   param: SVGMaskPathMorphParam,
 ) => string | string[]
-
-export interface Labels {
-  skip?: string
-  previous?: string
-  next?: string
-  finish?: string
-}
 
 export interface Progress {
   current: number | undefined;

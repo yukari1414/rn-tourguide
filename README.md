@@ -189,11 +189,19 @@ export interface TooltipConfig {
   tooltipBottomOffset?: number
 }
 
+export interface Labels {
+  skip?: string
+  previous?: string
+  next?: string
+  finish?: string
+}
+
 export interface TooltipContent {
   image?: React.ReactNode
   title?: string | React.ReactElement
   subtitle?: string | React.ReactElement
   text: string | React.ReactElement // text in tooltip
+  labels?: Labels
 }
 
 export type SharedProps = MaskConfig & TooltipContent & TooltipConfig;
@@ -231,13 +239,6 @@ interface TooltipProps {
   handleNext?(): void
   handlePrev?(): void
   handleStop?(): void
-}
-
-interface Labels {
-  skip?: string
-  previous?: string
-  next?: string
-  finish?: string
 }
 
 export interface Progress {
