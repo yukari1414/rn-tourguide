@@ -187,11 +187,11 @@ export class Modal extends React.Component<ModalProps, State> {
     const duration = this.props.animationDuration! + 200
     const toValue =
       verticalPosition === 'bottom'
-        ? tooltip.top + (this.props.currentStep!.tooltipTopOffset || 0)
+        ? tooltip.top + ((this.props.currentStep && this.props.currentStep.tooltipTopOffset) || 0)
         : obj.top -
           MARGIN -
           135 -
-          (this.props.currentStep!.tooltipBottomOffset || 0)
+          ((this.props.currentStep && this.props.currentStep.tooltipBottomOffset) || 0)
     const translateAnim = Animated.timing(this.state.tooltipTranslateY, {
       toValue,
       duration,
